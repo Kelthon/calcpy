@@ -22,6 +22,8 @@ calcPy is a simple calculator created in python
 
 ## To do
 
+1. fix division by zero
+1. fix change symbols
 1. fix numbers negatives
 1. Add support keyborad
 1. Fix clear result after input update
