@@ -28,7 +28,7 @@ def addSymbolToOutput(screen, values, output, symbol, dotSymbol='.', plusSymbol=
             float_number = True 
 
     expression = values[output]
-    if expression[-1] == dotSymbol or expression[-1] == plusSymbol or expression[-1] == minusSymbol or expression[-1] == multSymbol or expression[-1] == divSymbol:
+    if isSymbol(expression[-1]):
         endsWithSymbol = True
         
     if symbol == dotSymbol:
@@ -44,28 +44,6 @@ def addSymbolToOutput(screen, values, output, symbol, dotSymbol='.', plusSymbol=
             
         else:
             expression = expression + symbol
-        screen[output].update(expression)
-
-def plusMinus(screen, values, output, dotSymbol='.', plusSymbol='+', minusSymbol='-', multSymbol='*', divSymbol='/', pRight='(', pLeft=')'):
-    
-    expression = values[output]
-
-    if isSymbol(expression[-1]):
-        number = float(expression[-2]) * - 1
-    else:
-        number = float(expression[-1]) * - 1
-
-    if len(expression) == 1:
-        expression = expression[:-1] + str(number)
-    else:
-        if isSymbol(expression[-1]):
-            pass
-        else: 
-            number = float(expression[-2:-1]) * - 1
-        # else:
-        #     number = float(expression) * - 1
-        expression = expression[:-1] + str(number)
-
     screen[output].update(expression)
 
 def setResult(screen, output, result):
@@ -73,6 +51,7 @@ def setResult(screen, output, result):
 
 def mainWindow():
     mainLayout = [
+        [gui.Text(key='message')],
         [gui.Input("0", key='output',)],
         [gui.Button("C"), gui.Button("-/^"), gui.Button("%"), gui.Button("/")],
         [gui.Button("7"), gui.Button("8"), gui.Button("9"), gui.Button("x")],
@@ -189,11 +168,16 @@ def mainWindow():
                 addSymbolToOutput(screen, values, 'output', '/')
             else:
                 numberTwo = float(strNumber)
-                numberOne = result = numberOne / numberTwo
-                strNumber = str(result)        
+                try:
+                    numberOne = result = numberOne / numberTwo
+                    strResult = str(result)
+                except:
+                    strResult = "Error"
+                    numberOne = result = 0
+                strNumber = strResult        
                 numberTwo = 0
                 addedNumber = False
-                setResult(screen, 'output', result)
+                setResult(screen, 'output', strResult)
         if event == '±':
             operation = 'equals'
             result = float(strNumber) * -1
@@ -204,25 +188,33 @@ def mainWindow():
                 strResult = strNumber = str(result)
             setResult(screen, 'output', strResult)
         if event == '=':
+            result = 0
             if operation == 'equals':
+                setResult(screen, "message", "")
                 result = float(strNumber)
             elif operation == 'sum':
+                setResult(screen, "message", "")
                 numberTwo = float(strNumber)
                 result = numberOne + numberTwo
             elif operation == 'dif':
+                setResult(screen, "message", "")
                 numberTwo = float(strNumber)
                 result = numberOne - numberTwo
             elif operation == 'mult':
+                setResult(screen, "message", "")
                 numberTwo = float(strNumber)
                 result = numberOne * numberTwo
             elif operation == 'div':
                 numberTwo = float(strNumber)
-                result = numberOne / numberTwo
+                try:
+                    result = numberOne / numberTwo
+                except:
+                    setResult(screen, "message", "Erro divisão por zero")
 
             operation = 'equals'
             numberTwo = 0
             addedNumber = False
-            strNumber = str(result)
+            strNumber = result
             setResult(screen, 'output', result)
     screen.Close()
 mainWindow()
