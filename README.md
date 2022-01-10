@@ -22,6 +22,7 @@ calcPy is a simple calculator created in python
 
 ## To do
 
+1. fix numbers negatives
 1. Add support keyborad
 1. Fix clear result after input update
 1. Add functionality to symbol buttons

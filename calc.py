@@ -73,7 +73,7 @@ def setResult(screen, output, result):
 
 def mainWindow():
     mainLayout = [
-        [gui.Input("0", key='output')],
+        [gui.Input("0", key='output',)],
         [gui.Button("C"), gui.Button("-/^"), gui.Button("%"), gui.Button("/")],
         [gui.Button("7"), gui.Button("8"), gui.Button("9"), gui.Button("x")],
         [gui.Button("4"), gui.Button("5"), gui.Button("6"), gui.Button("-")],
@@ -198,9 +198,11 @@ def mainWindow():
             operation = 'equals'
             result = float(strNumber) * -1
             if addedNumber:
-                strNumber = strNumber + str(result) 
-            else:
+                strResult = str(numberOne) + str(result) if result < 0 else str(numberOne) + '+' + str(result)
                 strNumber = str(result)
+            else:
+                strResult = strNumber = str(result)
+            setResult(screen, 'output', strResult)
         if event == '=':
             if operation == 'equals':
                 result = float(strNumber)
