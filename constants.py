@@ -39,12 +39,19 @@ DIF = 'dif'
 EQS = 'equals' 
 DIV = 'divide' 
 MUL = 'multiply'
+POW = 'pow'
+SQRT = 'root'
+PERC = 'percent'
 
 # lists
-SYMBOLS = [ DOT, CARET, PLUS, CLEAR, MINUS, EQUALS, DIVIDE, MULTIPLY, PERCETAGE, 
+SYMBOLS = [ CARET, PLUS, CLEAR, MINUS, EQUAL, DIVIDE, MULTIPLY, PERCETAGE, 
             ABSOLUTE, PLUS_MINUS, SQUARE_ROOT, FACTORIAL, PARENTHESES   ]
 
 NUMBERS = [ ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE  ]
 
+BASIC_OPERATIONS = { SUM:PLUS, DIF:MINUS, MUL:MULTIPLY, DIV:DIVIDE }
+
 # Messages
+ERR = "Error"
 ZERO_DIV_ERR = "Error: Division by zero"
+NEGATIVE_SQRT_ERR = "Error: negative square root"
