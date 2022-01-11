@@ -1,6 +1,7 @@
 # Names
-OUTPUT = 'output'
-MESSAGES = 'messages'
+NAME = "Calculadora"
+OUTPUT = "output"
+MESSAGES = "messages"
 
 # Symbols
 VOID = ""
