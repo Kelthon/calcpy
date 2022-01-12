@@ -10,7 +10,7 @@ def isSymbol (value):
 # add numbers to output
 def addNumberToOutput(screen, values, output, valueEntry, valueNull=ZERO):
     if values[output] == valueNull:
-        screen[OUTPUT].update(valueEntry)
+        screen[output].update(valueEntry)
     else:
         expression = values[output] + valueEntry
         screen[output].update(expression)

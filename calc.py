@@ -142,4 +142,3 @@ def mainLoop():
             setResult(screen, OUTPUT, numberOne)
     # end
     screen.Close()
-mainLoop()
