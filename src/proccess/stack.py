@@ -11,7 +11,7 @@ class Node():
     def setNext(self, next: TypeNode | None = None) -> None:
         self.__next = next
 
-    def getNext(self) -> Any:
+    def getNext(self) -> TypeNode | None:
         return self.__next
     
     def setData(self, data: Any) -> None:
@@ -57,7 +57,7 @@ class Stack():
         del node
         return data
     
-    def clear(self) -> Any:
+    def clear(self) -> None:
         while self._first != self._last:
             node = self._first
             self._first = self._first.getNext()

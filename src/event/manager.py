@@ -1,14 +1,14 @@
 # Observer
-from event import EventListener
+from src.event.event import Event
 
 class EventManager():
     def __init__(self) -> None:
         self.listeners = []
 
-    def listen(self, event: EventListener) -> None:
+    def listen(self, event: Event) -> None:
         self.listeners.append(event)
 
-    def unlisten(self, event: EventListener) -> None:
+    def unlisten(self, event: Event) -> None:
         self.listeners.remove(event)
 
     def notify(self, type, data):
